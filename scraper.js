@@ -9,10 +9,10 @@ const { base64encode } = require('nodejs-base64');
 
 const config = require('./config.json');
 
-async function getContents(sUser, sRepo, sPath, oDump) {
-
+async function getContents(sUser, sRepo, sPath, oDump, sAuth) {
+    //'Basic ' + base64encode(config.username + ':' + config.password)
     let json = await fetch('https://api.github.com/repos/' + sUser + '/' + sRepo + '/contents/' + sPath, {
-        method: 'GET', headers: { Authorization: 'Basic ' + base64encode(config.username + ':' + config.password) }
+        method: 'GET', headers: { Authorization: sAuth }
     }).then(res => res.json());
     for (const property in json) {
         let input = {};
@@ -41,4 +41,4 @@ async function getContents(sUser, sRepo, sPath, oDump) {
     }
     return oDump
 }
-exports.getContents = getContents;
+module.exports = getContents;
