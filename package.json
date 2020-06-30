@@ -1,6 +1,6 @@
 {
-  "name": "GithubScraper",
-  "version": "1.0.0",
+  "name": "github_repository_scraper",
+  "version": "1.0.1",
   "description": "Github scraper recursively grabs every file in a Github repository and returns it as a JSON object with sources.",
   "main": "scraper.js",
   "scripts": {},
