@@ -7,8 +7,6 @@
 const fetch = require('node-fetch');
 const { base64encode } = require('nodejs-base64');
 
-const config = require('./config.json');
-
 async function getContents(sUser, sRepo, sPath, oDump, sAuth) {
     //'Basic ' + base64encode(config.username + ':' + config.password)
     let json = await fetch('https://api.github.com/repos/' + sUser + '/' + sRepo + '/contents/' + sPath, {
