@@ -2,34 +2,7 @@
  * Github Scraper
  * Ben Johnston (gsck)
  */
-/*
-async function getContents(sUser, sRepo, sPath, oDump) {
-    //const { statusCode, data, headers } = await curly.get('https://api.github.com/repos/' + sUser + '/' + sRepo + '/contents/' + sPath)
-    console.log('https://api.github.com/repos/' + sUser + '/' + sRepo + '/contents/' + sPath)
-    curly.get('https://api.github.com/repos/' + sUser + '/' + sRepo + '/contents/' + sPath).then((statusCode, data, headers) => {
-        console.log(statusCode);
-        console.log(data);
-        console.log(headers);
-    }).catch((err) => {
-        console.log(err);
-    })
-}
 
-getContents("gsckoco", "Daemon", "", {});
-
-.then(json => {
-            for (const property in json) {
-                let input = {}
-                let content = json[property]
-                input.type = content.type
-                input.name = content.name
-                oDump.push(input);
-            }
-        }).catch(err => console.error(err));
-
-
-
-*/
 
 const fetch = require('node-fetch');
 const { base64encode } = require('nodejs-base64');
@@ -55,6 +28,7 @@ async function getContents(sUser, sRepo, sPath, oDump) {
                  * Submodules show up as files for whatever reason. Kind of stupid.
                  * //TODO Add support for submodules. 
                  */
+                input.type = "submodule"
             } else {
                 let src = await fetch(input.download).then(res => res.text());
                 input.src = src
@@ -67,7 +41,4 @@ async function getContents(sUser, sRepo, sPath, oDump) {
     }
     return oDump
 }
-let files = []
-getContents("githubtraining", "example-dependency", "", files).then(res => {
-    console.log(res);
-})
+exports.getContents = getContents;
