@@ -32,7 +32,8 @@ async function getContents(sUser, sRepo, sPath, oDump, sAuth) {
                 input.src = src
             }
         } else if (input.type == "dir") {
-            getContents(sUser, sRepo, input.path, oDump);
+            let content = await getContents(sUser, sRepo, input.path, []);
+            input.content = content;
         }
 
         oDump.push(input);
