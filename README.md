@@ -5,7 +5,7 @@ Github scraper recursively grabs every file in a Github repository and returns i
 Run `npm i github_repository_scraper` to install the package.
 
 ```js
-let getContents = require(github_repository_scraper);
+let getContents = require('github_repository_scraper');
 getContents(sUser, sRepo, sPath, oDump, sAuth) => Array
 ```
 `getContents` is a recursive function, meaning that it will go through every directory and grab the source.
